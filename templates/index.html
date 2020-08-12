@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Welcome to Finance
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>TOTAL</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td><strong>{{ ttlshares | usd }}</strong></td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for line in lines %}
+                <tr>
+                    <td>{{ line["symbol"] }}</td>
+                    <td>{{ line["name"] }}</td>
+                    <td>{{ line["shares_total"] }}</td>
+                    <td>{{ portfo[line["symbol"]]["price"] | usd }}</td>
+                    <td>{{ (portfo[line["symbol"]]["price"] * line.shares_total) | usd }}</td>
+                </tr>
+            {% endfor %}
+
+            <tr>
+                <td colspan="4">CASH</td>
+                <td>{{ remn | usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

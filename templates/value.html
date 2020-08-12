@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote - {{ market["symbol"] }}
+{% endblock %}
+
+{% block main %}
+    <p>A share of <strong>{{ market["name"] }} ({{ market["symbol"] }})</strong> costs <strong>${{ market["price"] }}</strong>.</p>
+{% endblock %}
